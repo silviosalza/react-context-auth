@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function PostsList() {
   const [postsList, setPostsList] = useState([]);
@@ -57,6 +58,12 @@ export function PostsList() {
                 />
                 <h5 className="font-bold mb-2">Contenuto:</h5>
                 <span className="max-w-full text-center">{post.content}</span>
+                <Link
+                  className="font-bold border-2 border-black"
+                  to={`/posts/${post.id}`}
+                >
+                  Show
+                </Link>
               </div>
             </li>
           ))}

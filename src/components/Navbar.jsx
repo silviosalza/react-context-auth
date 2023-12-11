@@ -22,7 +22,7 @@ export default function Navbar() {
                 <NavbarLink href="/">Home</NavbarLink>
               </li>
               <li>
-                <NavbarLink href="/blog">Blog</NavbarLink>
+                <NavbarLink href="/posts">Blog</NavbarLink>
               </li>
             </ul>
           </div>
