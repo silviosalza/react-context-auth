@@ -23,10 +23,10 @@ function App() {
               <Route path="posts/:id" element={<PostShow />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
+              <Route path="dashboard/" element={<Dashboard />}></Route>
             </Route>
-            <Route path="/dashboard" element={<DefaultLayout />}>
-              <Route path="/" element={<Dashboard />}></Route>
-            </Route>
+            {/* <Route path="/dashboard" element={<DefaultLayout />}>
+            </Route> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>
