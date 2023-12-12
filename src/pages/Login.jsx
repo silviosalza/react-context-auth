@@ -4,6 +4,7 @@ import { handleInputChange } from "../utils/handleInputChange";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
+  const navigation = useNavigate();
   const { handleLoginOrRegistration } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -19,7 +20,7 @@ export default function Login() {
         resolve({
           token: "abc123",
           user: {
-            name: "Silvio",
+            name: "Silvio Filippo",
             surname: "Salza",
             email: formData.email,
           },
@@ -30,6 +31,7 @@ export default function Login() {
     //salvo i dati nell'authcontext
 
     handleLoginOrRegistration(resp);
+    navigation("/dashboard");
   }
   return (
     <>

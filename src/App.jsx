@@ -21,6 +21,7 @@ function App() {
             <Route path="posts/:id" element={<PostShow />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

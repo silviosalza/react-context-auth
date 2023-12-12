@@ -1,14 +1,40 @@
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { handleInputChange } from "../utils/handleInputChange";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Register() {
+  const { handleLoginOrRegistration } = useAuth();
+  const navigation = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
     email: "",
     password: "",
   });
+
+  async function onRegistrationSubmit(e) {
+    e.preventDefault();
+
+    //chiamata API che invita dati login al server e riceve risposta
+    const resp = await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          token: "abc456",
+          user: {
+            name: formData.name,
+            surname: formData.surname,
+            email: formData.email,
+          },
+        });
+      }, 2000);
+    });
+
+    //salvo i dati nell'authcontext
+    handleLoginOrRegistration(resp);
+    navigation("/dashboard");
+  }
+
   return (
     <>
       <div className="container mx-auto px-4">
@@ -17,7 +43,7 @@ export default function Register() {
           <div className="w-full max-w-md">
             <form
               className="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4"
-              // onSubmit={onRegistrationSubmit}
+              onSubmit={onRegistrationSubmit}
             >
               {/* Nome */}
               <div className="mb-4">
