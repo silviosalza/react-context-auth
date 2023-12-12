@@ -15,10 +15,29 @@ export function AuthProvider({ children }) {
     setToken(token);
     localStorage.setItem("token", token);
   }
+
+  //recupero utente attuale tramite una chiamata API
+  async function fetchLoggedUser() {
+    const user = await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          name: "Filippo",
+          surname: "Salza",
+          email: "filipposalza@gmail.it",
+        });
+      }, 2000);
+    });
+
+    setUser(user);
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
+
+    //se c'è token memorizzato nel localstorage lo salvo e lo uso per recuperare i dati dell'utente
     if (token) {
       setToken(token);
+      fetchLoggedUser();
     }
   }, [token]);
 
