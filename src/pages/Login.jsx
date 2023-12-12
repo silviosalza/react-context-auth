@@ -1,15 +1,36 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { handleInputChange } from "../utils/handleInputChange";
-
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
+  const { handleLoginOrRegistration } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  async function onLoginSubmit(e) {
+    e.preventDefault();
+
+    //chiamata API che invita dati login al server e riceve risposta
+    const resp = await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          token: "abc123",
+          user: {
+            name: "Silvio",
+            surname: "Salza",
+            email: formData.email,
+          },
+        });
+      }, 2000);
+    });
+
+    //salvo i dati nell'authcontext
+
+    handleLoginOrRegistration(resp);
+  }
   return (
     <>
       <div className="container mx-auto px-4">
@@ -18,7 +39,7 @@ export default function Login() {
           <div className="w-full max-w-md">
             <form
               className="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4"
-              //   onSubmit={onLoginSubmit}
+              onSubmit={onLoginSubmit}
             >
               {/* Email */}
               <div className="mb-4">
