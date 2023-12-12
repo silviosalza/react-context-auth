@@ -7,6 +7,7 @@ import { AuthProvider } from "./contexts/AuthContext.jsx";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import DefaultLayout from "./pages/DefaultLayout";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,12 +17,16 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="posts" element={<Blog />}></Route>
-            <Route path="posts/:id" element={<PostShow />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="posts" element={<Blog />}></Route>
+              <Route path="posts/:id" element={<PostShow />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+            </Route>
+            <Route path="/dashboard" element={<DefaultLayout />}>
+              <Route path="/" element={<Dashboard />}></Route>
+            </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
