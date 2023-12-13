@@ -8,14 +8,15 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import DefaultLayout from "./pages/DefaultLayout";
+import PrivateRoutes from "./middlewares/PrivateRoutes";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <AuthProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
           <Routes>
             <Route element={<DefaultLayout />}>
               <Route path="/" element={<Home />}></Route>
@@ -25,11 +26,21 @@ function App() {
               <Route path="/register" element={<Register />}></Route>
               <Route path="dashboard/" element={<Dashboard />}></Route>
             </Route>
-            {/* <Route path="/dashboard" element={<DefaultLayout />}>
-            </Route> */}
+            {/* Rotte private */}
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoutes>
+                  <DefaultLayout />
+                </PrivateRoutes>
+              }
+            >
+              <Route index element={<Dashboard />}></Route>
+              <Route path="user" element={<Dashboard />}></Route>
+            </Route>
           </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </>
   );
 }

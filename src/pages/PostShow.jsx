@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar.jsx";
 export default function Blog() {
   return (
     <>
-      <Navbar></Navbar>
       <Post></Post>
     </>
   );

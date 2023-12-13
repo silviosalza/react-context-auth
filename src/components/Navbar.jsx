@@ -24,6 +24,12 @@ export default function Navbar() {
               <li>
                 <NavbarLink href="/posts">Blog</NavbarLink>
               </li>
+              <li>
+                <NavbarLink href="/login">Login</NavbarLink>
+              </li>
+              <li>
+                <NavbarLink href="/register">Register</NavbarLink>
+              </li>
             </ul>
           </div>
         </div>
